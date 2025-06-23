@@ -19,11 +19,19 @@ function! SealIndent()
         return indent(prev_lnum)
     endif
 
-    if prev_line =~ '^\s*\(if\|while\|for\|else\)\>'
+    if curr_line =~ '^\s*else\>'
+        return indent(prev_lnum) - &shiftwidth
+    endif
+
+    if prev_line =~ '^\s*else\>'
         return indent(prev_lnum) + &shiftwidth
     endif
 
-    if prev_line =~ '^\s*\(return\|stop\|skip\|else\)\>'
+    if prev_line =~ '^\s*\(if\|while\|for\)\>'
+        return indent(prev_lnum) + &shiftwidth
+    endif
+
+    if prev_line =~ '^\s*\(return\|stop\|skip\)\>'
         return max([0, indent(prev_lnum) - &shiftwidth])
     endif
 
