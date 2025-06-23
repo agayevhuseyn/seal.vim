@@ -1,0 +1,39 @@
+if exists("b:did_indent")
+    finish
+endif
+let b:did_indent = 1
+
+setlocal indentexpr=SealIndent()
+
+function! SealIndent()
+    let lnum = v:lnum
+    let prev_lnum = prevnonblank(lnum - 1)
+    let prev_line = getline(prev_lnum)
+    let curr_line = getline(lnum)
+
+    if prev_line =~ 'define.*(.\{-})\s*$'
+        return indent(prev_lnum) + &shiftwidth
+    endif
+
+    if prev_line =~ 'define\s*(.\{-})\s*\S'
+        return indent(prev_lnum)
+    endif
+
+    if prev_line =~ '^\s*\(if\|while\|for\|else\)\>'
+        return indent(prev_lnum) + &shiftwidth
+    endif
+
+    if prev_line =~ '^\s*\(return\|stop\|skip\|else\)\>'
+        return max([0, indent(prev_lnum) - &shiftwidth])
+    endif
+
+    if prev_line =~ '[{\[]\s*$'
+        return indent(prev_lnum) + &shiftwidth
+    endif
+
+    if curr_line =~ '[}\[]'
+        return indent(prev_lnum) - &shiftwidth
+    endif
+
+    return indent(prev_lnum)
+endfunction
