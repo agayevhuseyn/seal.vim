@@ -7,9 +7,9 @@ syntax match sealBuiltin /\<\%(print\|scan\|exit\|len\|int\|float\|push\|pop\)\>
 
 syntax keyword sealBoolean true false null
 
-syntax match sealNumber /\v(0x[0-9A-Fa-f]+)/
-syntax match sealNumber /\v\d+/
-syntax match sealNumber /\v\d+\.\d+/
+syntax match sealNumber /-\?\<\d\+\>/
+syntax match sealNumber /-\?\<\d\+\.\d*\>/
+syntax match sealNumber /\<0x\x\+\>/
 
 syntax match sealString /"\([^"\\]\|\\.\)*"/
 syntax match sealString /'\([^'\\]\|\\.\)*'/
