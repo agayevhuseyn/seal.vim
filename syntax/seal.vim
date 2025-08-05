@@ -3,7 +3,7 @@ syntax keyword sealKeyword skip stop return
 syntax keyword sealKeyword and or not
 syntax keyword sealKeyword include as do in typeof
 
-syntax match sealBuiltin /\<\%(print\|scan\|exit\|len\|int\|float\|str\|bool\|push\|pop\)\>\ze\s*(/
+syntax match sealBuiltin /\<\%(print\|scan\|exit\|len\|int\|float\|str\|bool\|push\|pop\|insert\|remove\)\>\ze\s*(/
 
 syntax keyword sealBoolean true false null
 
