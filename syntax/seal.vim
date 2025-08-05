@@ -18,6 +18,9 @@ syntax match sealEscape /\\./ containedin=sealString
 syntax match sealComment "//.*"
 syntax region sealComment start="/\*" end="\*/" contains=sealComment
 
+syntax match sealShebang /^\%1l#!.*$/
+highlight link sealShebang PreProc
+
 highlight def link sealKeyword Keyword
 highlight def link sealBoolean Boolean
 highlight def link sealNumber Number
