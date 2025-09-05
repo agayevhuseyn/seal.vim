@@ -40,11 +40,11 @@ function! SealIndent()
         return max([0, indent(prev_lnum) - &shiftwidth])
     endif
 
-    if prev_line =~ '[{\[]\s*$'
+    if prev_line =~ '[{\[\(]\s*$'
         return indent(prev_lnum) + &shiftwidth
     endif
 
-    if curr_line =~ '[}\[]'
+    if curr_line =~ '[}\]\)]'
         return indent(prev_lnum) - &shiftwidth
     endif
 
